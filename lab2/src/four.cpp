@@ -44,6 +44,18 @@ Four::~Four() noexcept
     this->size = 0;
 }
 
+std::string Four::toString() const
+{
+    const auto vSize = this->getValuableSize();
+    std::vector<char> reversed(vSize);
+    for (size_t i = 0; i < vSize; i++)
+    {
+        reversed[i] = static_cast<char>(this->array[vSize - 1 - i]);
+    }
+
+    return {reversed.begin(), reversed.end()};
+}
+
 std::strong_ordering operator<=>(const Four& lhs, const Four& rhs) {
     const auto thisSize = lhs.getValuableSize();
     const auto otherSize = rhs.getValuableSize();
@@ -64,6 +76,79 @@ std::strong_ordering operator<=>(const Four& lhs, const Four& rhs) {
 
 bool operator==(const Four& lhs, const Four& rhs) {
     return lhs <=> rhs == std::strong_ordering::equal;
+}
+
+Four Four::operator+=(const Four &rhs)
+{
+    const size_t minSize = std::min(size, rhs.size);
+    const auto maxSize = std::max(size, rhs.size);
+    ensureArrayCapacity(maxSize);
+
+    bool overflow = false;
+    for (size_t i = 0; i < maxSize; i++)
+    {
+        array[i] += rhs.get(i) - u'0';
+        if (overflow)
+        {
+            array[i] += 1;
+            overflow = false;
+        }
+        if (array[i] >= u'4')
+        {
+            array[i] -= 4;
+            overflow = true;
+        }
+    }
+    if (overflow)
+    {
+        ensureArrayCapacity(maxSize + 1);
+        array[maxSize]++;
+    }
+
+    return *this;
+}
+
+Four Four::operator-=(const Four &rhs)
+{
+    if (*this < rhs)
+        throw std::exception();
+    const size_t minSize = std::min(size, rhs.size);
+    const auto maxSize = std::max(size, rhs.size);
+    ensureArrayCapacity(maxSize);
+
+    bool overflow = false;
+    for (size_t i = 0; i < maxSize; i++)
+    {
+        array[i] -= rhs.get(i) - u'0';
+        if (overflow)
+        {
+            array[i] -= 1;
+            overflow = false;
+        }
+        if (array[i] < u'0')
+        {
+            array[i] += 4;
+            overflow = true;
+        }
+    }
+    if (overflow)
+        throw "Unreachable exception";
+
+    return *this;
+}
+
+Four operator+(const Four& lhs, const Four& rhs)
+{
+    Four result = lhs;
+    result += rhs;
+    return result;
+}
+
+Four operator-(const Four& lhs, const Four& rhs)
+{
+    Four result = lhs;
+    result -= rhs;
+    return result;
 }
 
 size_t Four::getValuableSize() const
@@ -97,91 +182,4 @@ u_int8_t Four::get(const size_t index) const {
         return u'0';
 
     return this->array[index];
-}
-
-std::string Four::toString() const
-{
-    const auto vSize = this->getValuableSize();
-    std::vector<char> reversed(vSize);
-    for (size_t i = 0; i < vSize; i++)
-    {
-        reversed[i] = static_cast<char>(this->array[vSize - 1 - i]);
-    }
-
-    return {reversed.begin(), reversed.end()};
-}
-
-Four operator+(const Four& lhs, const Four& rhs)
-{
-    Four result(lhs);
-
-    const size_t minSize = std::min(lhs.size, rhs.size);
-    const auto maxSize = std::max(lhs.size, rhs.size);
-    result.ensureArrayCapacity(maxSize);
-
-    bool overflow = false;
-    for (size_t i = 0; i < maxSize; i++)
-    {
-        result.array[i] += rhs.get(i) - u'0';
-        if (overflow)
-        {
-            result.array[i] += 1;
-            overflow = false;
-        }
-        if (result.array[i] >= u'4')
-        {
-            result.array[i] -= 4;
-            overflow = true;
-        }
-    }
-    if (overflow)
-    {
-        result.ensureArrayCapacity(maxSize + 1);
-        result.array[maxSize]++;
-    }
-
-    return result;
-}
-
-Four operator-(const Four& lhs, const Four& rhs)
-{
-    if (lhs < rhs)
-        throw std::exception();
-
-    Four result(lhs);
-
-    const size_t minSize = std::min(lhs.size, rhs.size);
-    const auto maxSize = std::max(lhs.size, rhs.size);
-    result.ensureArrayCapacity(maxSize);
-
-    bool overflow = false;
-    for (size_t i = 0; i < maxSize; i++)
-    {
-        result.array[i] -= rhs.get(i) - u'0';
-        if (overflow)
-        {
-            result.array[i] -= 1;
-            overflow = false;
-        }
-        if (result.array[i] < u'0')
-        {
-            result.array[i] += 4;
-            overflow = true;
-        }
-    }
-    if (overflow)
-        throw "Unreachable exception";
-
-    return result;
-}
-
-Four Four::operator+=(const Four &rhs)
-{
-    // TODO: check whether array leaks
-    return *this = *this + rhs;
-}
-
-Four Four::operator-=(const Four &rhs)
-{
-    return *this = *this - rhs;
 }

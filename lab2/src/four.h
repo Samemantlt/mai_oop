@@ -9,20 +9,20 @@ public:
     explicit Four(std::string number);
 
     Four(const Four &source);
-    Four(const Four &&source) noexcept = default;
-
-    [[nodiscard]] std::string toString() const;
+    Four(Four &&source) noexcept = default;
 
     virtual ~Four() noexcept;
+
+    [[nodiscard]] std::string toString() const;
 
     friend std::strong_ordering operator<=>(const Four& lhs, const Four& rhs);
     friend bool operator==(const Four& lhs, const Four& rhs);
 
-    friend Four operator+(const Four& lhs, const Four& rhs);
-    friend Four operator-(const Four& lhs, const Four& rhs);
-
     Four operator+=(const Four& rhs);
     Four operator-=(const Four& rhs);
+
+    friend Four operator+(const Four& lhs, const Four& rhs);
+    friend Four operator-(const Four& lhs, const Four& rhs);
 
 private:
     size_t size;
