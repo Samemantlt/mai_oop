@@ -1,23 +1,23 @@
 #pragma once
 
-#include <stdint.h>
 #include <string>
 
-class Four
-{
+class Four {
 public:
-    Four(size_t size);
+    explicit Four(size_t size);
 
-    Four(std::string number);
+    explicit Four(std::string number);
 
     Four(const Four &source);
+    Four(const Four &&source) noexcept = default;
 
-    std::string toString();
+    [[nodiscard]] std::string toString() const;
 
     virtual ~Four() noexcept;
-    
-    bool operator==(const Four &other) const;
-    
+
+    friend std::strong_ordering operator<=>(const Four& lhs, const Four& rhs);
+    friend bool operator==(const Four& lhs, const Four& rhs);
+
     friend Four operator+(const Four& lhs, const Four& rhs);
     friend Four operator-(const Four& lhs, const Four& rhs);
 
@@ -28,5 +28,9 @@ private:
     size_t size;
     u_int8_t *array;
 
-    size_t getValuableSize() const;
+    [[nodiscard]] size_t getValuableSize() const;
+
+    void ensureArrayCapacity(size_t newSize);
+
+    [[nodiscard]] u_int8_t get(size_t index) const;
 };
