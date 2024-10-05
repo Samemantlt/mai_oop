@@ -1,16 +1,34 @@
 #include <iostream>
 
+#include "four.h"
+
 int main() {
-    std::cout << "[Polyndrom checker 5000]" << std::endl;
-    std::cout << "Enter string: ";
+    std::cout << "[Four calculator]" << std::endl;
 
-    std::string text;
-    std::cin >> text;
+    std::string a_string, b_string;
 
-    const bool result = text == "a";
+    std::cout << "Enter four number A: ";
+    std::cin >> a_string;
+    Four a(a_string);
 
-    if (result)
-        std::cout << "String IS polyndrom" << std::endl;
-    else
-        std::cout << "String is NOT polyndrom" << std::endl;
+    std::cout << "Enter four number B: ";
+    std::cin >> b_string;
+    Four b(b_string);
+
+    std::cout << "Sum: " << (a + b).toString() << std::endl;
+    try {
+        const auto subtract_result = (a - b).toString();
+        std::cout << "Subtract: " << subtract_result << std::endl;
+    } catch (std::runtime_error& e) {
+        std::cout << "Subtract error: " << e.what() << std::endl;
+    }
+
+    std::cout << "A < B: " << (a < b) << std::endl;
+    std::cout << "A > B: " << (a > b) << std::endl;
+
+    std::cout << "A <= B: " << (a <= b) << std::endl;
+    std::cout << "A >= B: " << (a >= b) << std::endl;
+
+    std::cout << "A == B: " << (a == b) << std::endl;
+    std::cout << "A != B: " << (a != b) << std::endl;
 }

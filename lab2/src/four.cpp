@@ -24,7 +24,7 @@ Four::Four(std::string number) {
 
     static const std::regex digits_regex("^0|([1-3][0-3]*)$");
     if (!std::regex_match(number, digits_regex))
-        throw std::runtime_error("number does not match regex ");
+        throw std::runtime_error("std::string number is not four number");
 
     std::copy(number.rbegin(), number.rend()--, this->array);
 }
