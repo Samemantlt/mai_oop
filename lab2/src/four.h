@@ -3,7 +3,7 @@
 #include <string>
 
 class Four {
-public:
+ public:
     explicit Four(size_t size);
 
     explicit Four(std::string number);
@@ -24,7 +24,7 @@ public:
     friend Four operator+(const Four& lhs, const Four& rhs);
     friend Four operator-(const Four& lhs, const Four& rhs);
 
-private:
+ private:
     size_t size;
     u_int8_t *array;
 

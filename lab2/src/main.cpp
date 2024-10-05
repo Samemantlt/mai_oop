@@ -3,7 +3,7 @@
 int main() {
     std::cout << "[Polyndrom checker 5000]" << std::endl;
     std::cout << "Enter string: ";
-    
+
     std::string text;
     std::cin >> text;
 

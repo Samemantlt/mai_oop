@@ -18,6 +18,7 @@ file(
 )
 
 add_executable(lab ${SOURCES})
+target_include_directories(lab PUBLIC src)
 
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
@@ -27,6 +28,7 @@ enable_testing()
 list(REMOVE_ITEM SOURCES "${CMAKE_SOURCE_DIR}/src/main.cpp")
 
 add_executable(runTests ${SOURCES} ${TESTS})
+target_include_directories(runTests PUBLIC src)
 target_link_libraries(runTests GTest::GTest GTest::Main)
 
 gtest_discover_tests(runTests)

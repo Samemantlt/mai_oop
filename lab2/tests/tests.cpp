@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../src/four.h"
-
+#include "four.h"
 
 class FourTests :
         public ::testing::Test,
