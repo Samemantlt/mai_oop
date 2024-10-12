@@ -4,12 +4,14 @@
 
 class Four {
  public:
-    explicit Four(size_t size);
+    Four();
+    explicit Four(const size_t & n, u_int8_t t = 0);
+    Four(const std::initializer_list<u_int8_t> &t);
 
-    explicit Four(std::string number);
+    explicit Four(const std::string& number);
 
-    Four(const Four &source);
-    Four(Four &&source) noexcept = default;
+    Four(const Four &other);
+    Four(Four &&other) noexcept;
 
     virtual ~Four() noexcept;
 

@@ -2,6 +2,18 @@
 
 #include "four.h"
 
+TEST(FourTests, ConstructorsValid) {
+    EXPECT_EQ((Four{'1', '2'}).toString(), "12");
+    EXPECT_EQ((Four{'3', '2'}).toString(), "32");
+
+    EXPECT_EQ((Four(3, '1')).toString(), "111");
+    EXPECT_EQ((Four(5, '2')).toString(), "22222");
+    EXPECT_EQ((Four(0, '3')).toString(), "");
+
+    EXPECT_EQ(Four("1").toString(), "1");
+    EXPECT_EQ(Four("0").toString(), "0");
+}
+
 TEST(FourTests, ToStringValid) {
     EXPECT_EQ(Four("123").toString(), "123");
     EXPECT_EQ(Four("1").toString(), "1");
