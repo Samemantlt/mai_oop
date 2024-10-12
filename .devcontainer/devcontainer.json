@@ -11,7 +11,8 @@
 			"vcpkgversion": "stable",
 			"vcpkgroot": "/usr/local/vcpkg",
 			"vcpkgdownload": "/usr/local/vcpkg-downloads"
-		}
+		},
+        "ghcr.io/devcontainers/features/python:1": {}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
