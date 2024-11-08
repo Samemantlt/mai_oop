@@ -6,10 +6,10 @@
 #include <vector>
 
 template<typename T>
-T *reallocArray(T *old, const size_t oldSize, const size_t newSize) {
-    T *newArray = new T[newSize];
-    std::copy(old, &old[oldSize], newArray);
-    return newArray;
+T *realloc_array(T *old, const size_t oldSize, const size_t newSize) {
+    T *new_array = new T[newSize];
+    std::copy(old, &old[oldSize], new_array);
+    return new_array;
 }
 
 Four::Four() {
@@ -66,25 +66,25 @@ Four::~Four() noexcept {
     size = 0;
 }
 
-std::string Four::toString() const {
-    const auto vSize = getValuableSize();
+std::string Four::to_string() const {
+    const auto v_size = get_valuable_size();
 
-    std::vector<char> reversed(vSize);
-    for (size_t i = 0; i < vSize; i++) {
-        reversed[i] = static_cast<char>(array[vSize - 1 - i]);
+    std::vector<char> reversed(v_size);
+    for (size_t i = 0; i < v_size; i++) {
+        reversed[i] = static_cast<char>(array[v_size - 1 - i]);
     }
 
     return {reversed.begin(), reversed.end()};
 }
 
 std::strong_ordering operator<=>(const Four &lhs, const Four &rhs) {
-    const auto thisSize = lhs.getValuableSize();
-    const auto otherSize = rhs.getValuableSize();
+    const auto this_size = lhs.get_valuable_size();
+    const auto other_size = rhs.get_valuable_size();
 
-    if (thisSize != otherSize)
-        return thisSize <=> otherSize;
+    if (this_size != other_size)
+        return this_size <=> other_size;
 
-    for (size_t i = thisSize - 1; i > 0; i--) {
+    for (size_t i = this_size - 1; i > 0; i--) {
         const auto thisValue = lhs.get(i);
         const auto otherValue = rhs.get(i);
 
@@ -100,11 +100,11 @@ bool operator==(const Four &lhs, const Four &rhs) {
 }
 
 Four Four::operator+=(const Four &rhs) {
-    const auto maxSize = std::max(size, rhs.size);
-    ensureArrayCapacity(maxSize);
+    const auto max_size = std::max(size, rhs.size);
+    ensure_array_capacity(max_size);
 
     bool overflow = false;
-    for (size_t i = 0; i < maxSize; i++) {
+    for (size_t i = 0; i < max_size; i++) {
         array[i] += rhs.get(i) - u'0';
         if (overflow) {
             array[i] += 1;
@@ -116,8 +116,8 @@ Four Four::operator+=(const Four &rhs) {
         }
     }
     if (overflow) {
-        ensureArrayCapacity(maxSize + 1);
-        array[maxSize]++;
+        ensure_array_capacity(max_size + 1);
+        array[max_size]++;
     }
 
     return *this;
@@ -127,11 +127,11 @@ Four Four::operator-=(const Four &rhs) {
     if (*this < rhs)
         throw std::runtime_error("Cannot subtract right value bigger than left value");
 
-    const auto maxSize = std::max(size, rhs.size);
-    ensureArrayCapacity(maxSize);
+    const auto max_size = std::max(size, rhs.size);
+    ensure_array_capacity(max_size);
 
     bool overflow = false;
-    for (size_t i = 0; i < maxSize; i++) {
+    for (size_t i = 0; i < max_size; i++) {
         array[i] -= rhs.get(i) - u'0';
         if (overflow) {
             array[i] -= 1;
@@ -158,7 +158,7 @@ Four operator-(const Four &lhs, const Four &rhs) {
     return result;
 }
 
-size_t Four::getValuableSize() const {
+size_t Four::get_valuable_size() const {
     if (size == 0)
         return 0;
 
@@ -169,14 +169,14 @@ size_t Four::getValuableSize() const {
     return 1;
 }
 
-void Four::ensureArrayCapacity(const size_t newSize) {
+void Four::ensure_array_capacity(const size_t newSize) {
     if (newSize <= size)
         return;
 
     const size_t oldSize = size;
     const auto oldArray = array;
 
-    array = reallocArray(array, size, newSize);
+    array = realloc_array(array, size, newSize);
     delete [] oldArray;
 
     for (size_t i = oldSize; i < newSize; i++) {

@@ -3,21 +3,21 @@
 #include "four.h"
 
 TEST(FourTests, ConstructorsValid) {
-    EXPECT_EQ((Four{'1', '2'}).toString(), "12");
-    EXPECT_EQ((Four{'3', '2'}).toString(), "32");
+    EXPECT_EQ((Four{'1', '2'}).to_string(), "12");
+    EXPECT_EQ((Four{'3', '2'}).to_string(), "32");
 
-    EXPECT_EQ((Four(3, '1')).toString(), "111");
-    EXPECT_EQ((Four(5, '2')).toString(), "22222");
-    EXPECT_EQ((Four(0, '3')).toString(), "");
+    EXPECT_EQ((Four(3, '1')).to_string(), "111");
+    EXPECT_EQ((Four(5, '2')).to_string(), "22222");
+    EXPECT_EQ((Four(0, '3')).to_string(), "");
 
-    EXPECT_EQ(Four("1").toString(), "1");
-    EXPECT_EQ(Four("0").toString(), "0");
+    EXPECT_EQ(Four("1").to_string(), "1");
+    EXPECT_EQ(Four("0").to_string(), "0");
 }
 
 TEST(FourTests, ToStringValid) {
-    EXPECT_EQ(Four("123").toString(), "123");
-    EXPECT_EQ(Four("1").toString(), "1");
-    EXPECT_EQ(Four("0").toString(), "0");
+    EXPECT_EQ(Four("123").to_string(), "123");
+    EXPECT_EQ(Four("1").to_string(), "1");
+    EXPECT_EQ(Four("0").to_string(), "0");
 }
 
 TEST(FourTests, ConstructorThrowsNonFourStringPassed) {

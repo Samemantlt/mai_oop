@@ -15,7 +15,7 @@ class Four {
 
     virtual ~Four() noexcept;
 
-    [[nodiscard]] std::string toString() const;
+    [[nodiscard]] std::string to_string() const;
 
     friend std::strong_ordering operator<=>(const Four& lhs, const Four& rhs);
     friend bool operator==(const Four& lhs, const Four& rhs);
@@ -30,9 +30,9 @@ class Four {
     size_t size;
     u_int8_t *array;
 
-    [[nodiscard]] size_t getValuableSize() const;
+    [[nodiscard]] size_t get_valuable_size() const;
 
-    void ensureArrayCapacity(size_t newSize);
+    void ensure_array_capacity(size_t newSize);
 
     [[nodiscard]] u_int8_t get(size_t index) const;
 };

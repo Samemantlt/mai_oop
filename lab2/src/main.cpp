@@ -15,9 +15,9 @@ int main() {
     std::cin >> b_string;
     Four b(b_string);
 
-    std::cout << "Sum: " << (a + b).toString() << std::endl;
+    std::cout << "Sum: " << (a + b).to_string() << std::endl;
     try {
-        const auto subtract_result = (a - b).toString();
+        const auto subtract_result = (a - b).to_string();
         std::cout << "Subtract: " << subtract_result << std::endl;
     } catch (std::runtime_error& e) {
         std::cout << "Subtract error: " << e.what() << std::endl;
