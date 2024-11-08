@@ -7,10 +7,12 @@
 
 #include <memory>
 
+#include "FiguresArray.h"
+
 std::unique_ptr<Figure> read_figure_from_console();
 
 int main() {
-    std::vector<std::unique_ptr<Figure>> figures;
+    FiguresArray figures;
 
     while (true) {
         std::cout << "Commands:" << std::endl
@@ -53,7 +55,7 @@ int main() {
                     break;
                 }
 
-                figures.erase(std::next(figures.begin(), index));
+                figures.remove_at(index);
                 std::cout << "Removed" << std::endl;
                 break;
             }
