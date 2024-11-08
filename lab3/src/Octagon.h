@@ -20,5 +20,5 @@ public:
 protected:
     [[nodiscard]] std::vector<Point> getPoints() const override;
 private:
-    std::array<Point, 8> points;
+    std::array<Point, PointsCount> points;
 };

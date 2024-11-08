@@ -4,8 +4,6 @@
 
 class Triangle : public Figure {
 public:
-    // using Figure::getSize, Figure::getCenter, Figure::operator==;
-
     Triangle() = default;;
     explicit Triangle(const Point& a, const Point& b, const Point& c);
 
