@@ -15,8 +15,6 @@ public:
     Triangle& operator=(const Triangle& other) = default;
     Triangle& operator=(Triangle&& other) = default;
 
-    bool operator==(const Triangle &) const;
-
 protected:
     [[nodiscard]] std::vector<Point> getPoints() const override;
 private:

@@ -27,11 +27,3 @@ protected:
 
     [[nodiscard]] virtual std::vector<Point> getPoints() const = 0;
 };
-
-class SixAngle : Figure {
-
-};
-
-class EightAngle : Figure {
-
-};

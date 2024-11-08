@@ -51,7 +51,7 @@ TEST(OctagonTests, GetCenterValid) {
 
 TEST(OctagonTests, PrintValid) {
     std::ostringstream output;
-    const Octagon triangle{
+    const Octagon figure{
         Point(0, 0),
         Point(1, 0),
         Point(2, 0),
@@ -62,7 +62,7 @@ TEST(OctagonTests, PrintValid) {
         Point(0, 1)
     };
 
-    triangle.print(output);
+    figure.print(output);
 
     EXPECT_EQ(output.str(), "Octagon {A = (0; 0); B = (1; 0); C = (2; 0); D = (3; 0); E = (3; 1); F = (2; 1); G = (1; 1); H = (0; 1)}");
 }
@@ -79,9 +79,9 @@ TEST(OctagonTests, ReadValid) {
         Point(1, 1),
         Point(0, 1)
     };
-    Octagon triangle;
+    Octagon figure;
 
-    triangle.read(input);
+    figure.read(input);
 
-    EXPECT_EQ(triangle, target);
+    EXPECT_EQ(figure, target);
 }

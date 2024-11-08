@@ -43,7 +43,7 @@ TEST(HexagonTests, GetCenterValid) {
 
 TEST(HexagonTests, PrintValid) {
     std::ostringstream output;
-    const Hexagon triangle{
+    const Hexagon figure{
         Point(0, 0),
         Point(1, 0),
         Point(2, 0),
@@ -52,7 +52,7 @@ TEST(HexagonTests, PrintValid) {
         Point(0, 1)
     };
 
-    triangle.print(output);
+    figure.print(output);
 
     EXPECT_EQ(output.str(), "Hexagon {A = (0; 0); B = (1; 0); C = (2; 0); D = (2; 1); E = (1; 1); F = (0; 1)}");
 }
@@ -67,9 +67,9 @@ TEST(HexagonTests, ReadValid) {
         Point(1, 1),
         Point(0, 1)
     };
-    Hexagon triangle;
+    Hexagon figure;
 
-    triangle.read(input);
+    figure.read(input);
 
-    EXPECT_EQ(triangle, target);
+    EXPECT_EQ(figure, target);
 }

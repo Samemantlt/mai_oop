@@ -14,10 +14,6 @@ void Triangle::read(std::istream &input) {
     input >> a >> b >> c;
 }
 
-bool Triangle::operator==(const Triangle &other) const {
-    return Figure::operator==(other);
-}
-
 std::vector<Point> Triangle::getPoints() const {
     return {a, b, c};
 }

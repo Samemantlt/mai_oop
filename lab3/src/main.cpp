@@ -7,7 +7,7 @@
 
 #include <memory>
 
-std::unique_ptr<Figure> readFromConsole();
+std::unique_ptr<Figure> readFigureFromConsole();
 
 int main() {
     std::vector<std::unique_ptr<Figure>> figures;
@@ -35,7 +35,7 @@ int main() {
                 break;
             }
             case 'a': {
-                auto newFigure = readFromConsole();
+                auto newFigure = readFigureFromConsole();
                 if (newFigure == nullptr) {
                     std::cout << "Not added!" << std::endl;
                     break;
@@ -94,13 +94,11 @@ int main() {
             case 'e': {
                 return 0;
             }
-            default:
-                continue;
         }
     }
 }
 
-std::unique_ptr<Figure> readFromConsole() {
+std::unique_ptr<Figure> readFigureFromConsole() {
     while (true) {
         std::cout << "Enter type of figure (t - triangle, h - hexagon, o - octagon): ";
 
