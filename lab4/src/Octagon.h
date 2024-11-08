@@ -15,7 +15,7 @@ public:
     void print(std::ostream& output) const override;
     void read(std::istream& input) override;
 
-    Octagon& operator=(const Octagon& other) = default;
+    Octagon& operator=(const Octagon& other);
     Octagon& operator=(Octagon&& other) = default;
 
 protected:

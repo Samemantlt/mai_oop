@@ -47,3 +47,12 @@ std::vector<Point<T>> Octagon<T>::get_points() const {
     }
     return output;
 }
+
+template<Scalar T>
+Octagon<T> & Octagon<T>::operator=(const Octagon &other) {
+    size_t i = 0;
+    for (const auto& point : other.points) {
+        points[i++] = std::make_unique<Point<T>>(*point);
+    }
+    return *this;
+}

@@ -16,7 +16,7 @@ public:
     void print(std::ostream& output) const override;
     void read(std::istream& input) override;
 
-    Hexagon& operator=(const Hexagon& other) = default;
+    Hexagon& operator=(const Hexagon& other);
     Hexagon& operator=(Hexagon&& other) = default;
 
 protected:

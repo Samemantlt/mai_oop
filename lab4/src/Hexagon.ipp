@@ -38,6 +38,15 @@ void Hexagon<T>::read(std::istream &input) {
 }
 
 template<Scalar T>
+Hexagon<T> & Hexagon<T>::operator=(const Hexagon &other) {
+    size_t i = 0;
+    for (const auto& point : other.points) {
+        points[i++] = std::make_unique<Point<T>>(*point);
+    }
+    return *this;
+}
+
+template<Scalar T>
 std::vector<Point<T>> Hexagon<T>::get_points() const {
     std::vector<Point<T>> output;
     for (const auto& point : points) {

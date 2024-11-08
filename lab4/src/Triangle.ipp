@@ -27,6 +27,14 @@ void Triangle<T>::read(std::istream &input) {
 }
 
 template<Scalar T>
+Triangle<T> & Triangle<T>::operator=(const Triangle &other) {
+    a = std::make_unique<Point<T>>(*other.a);
+    b = std::make_unique<Point<T>>(*other.b);
+    c = std::make_unique<Point<T>>(*other.c);
+    return *this;
+}
+
+template<Scalar T>
 std::vector<Point<T>> Triangle<T>::get_points() const {
     return {*a, *b, *c};
 }

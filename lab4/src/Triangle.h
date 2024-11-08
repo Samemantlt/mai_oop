@@ -13,7 +13,7 @@ public:
     void print(std::ostream& output) const override;
     void read(std::istream& input) override;
 
-    Triangle& operator=(const Triangle& other) = default;
+    Triangle& operator=(const Triangle& other);
     Triangle& operator=(Triangle&& other) = default;
 
 protected:
