@@ -24,6 +24,6 @@ void Octagon::read(std::istream &input) {
         input >> point;
 }
 
-std::vector<Point> Octagon::getPoints() const {
+std::vector<Point> Octagon::get_points() const {
     return {points.begin(), points.end()};
 }

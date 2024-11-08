@@ -12,20 +12,20 @@ Point::Point(double x, double y) {
   this->y = y;
 }
 
-double Point::getX() const { return x; }
+double Point::get_x() const { return x; }
 
-void Point::setX(double value) { x = value; }
+void Point::set_x(double value) { x = value; }
 
-double Point::getY() const { return y; }
+double Point::get_y() const { return y; }
 
-void Point::setY(double value) { y = value; }
+void Point::set_y(double value) { y = value; }
 
 double Point::length() const {
   return std::sqrt(x * x + y * y);
 }
 
 std::ostream &operator<<(std::ostream &output, const Point &point) {
-  output << "(" << point.getX() << "; " << point.getY() << ")";
+  output << "(" << point.get_x() << "; " << point.get_y() << ")";
   return output;
 }
 

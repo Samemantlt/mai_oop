@@ -22,6 +22,6 @@ void Hexagon::read(std::istream &input) {
         input >> point;
 }
 
-std::vector<Point> Hexagon::getPoints() const {
+std::vector<Point> Hexagon::get_points() const {
     return {points.begin(), points.end()};
 }

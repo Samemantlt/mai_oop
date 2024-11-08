@@ -4,13 +4,13 @@
 #include "Triangle.h"
 
 TEST(TriangleTests, GetSizeValid) {
-    EXPECT_DOUBLE_EQ(Triangle(Point(0, 0), Point(1, 0), Point(0, 1)).getSize(), 0.5);
-    EXPECT_DOUBLE_EQ(Triangle(Point(0, 0), Point(2, 0), Point(0, 2)).getSize(), 2);
+    EXPECT_DOUBLE_EQ(Triangle(Point(0, 0), Point(1, 0), Point(0, 1)).get_size(), 0.5);
+    EXPECT_DOUBLE_EQ(Triangle(Point(0, 0), Point(2, 0), Point(0, 2)).get_size(), 2);
 }
 
 TEST(TriangleTests, GetCenterValid) {
-    EXPECT_EQ(Triangle(Point(0, 0), Point(1, 0), Point(0, 1)).getCenter(), Point(1.0/3, 1.0/3));
-    EXPECT_EQ(Triangle(Point(0, 0), Point(3, 0), Point(0, 3)).getCenter(), Point(1, 1));
+    EXPECT_EQ(Triangle(Point(0, 0), Point(1, 0), Point(0, 1)).get_center(), Point(1.0/3, 1.0/3));
+    EXPECT_EQ(Triangle(Point(0, 0), Point(3, 0), Point(0, 3)).get_center(), Point(1, 1));
 }
 
 TEST(TriangleTests, PrintValid) {

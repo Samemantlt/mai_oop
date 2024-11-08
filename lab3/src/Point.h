@@ -8,11 +8,11 @@ public:
 
     explicit Point(double x, double y);
 
-    [[nodiscard]] double getX() const;
-    void setX(double value);
+    [[nodiscard]] double get_x() const;
+    void set_x(double value);
 
-    [[nodiscard]] double getY() const;
-    void setY(double value);
+    [[nodiscard]] double get_y() const;
+    void set_y(double value);
 
     [[nodiscard]] double length() const;
 

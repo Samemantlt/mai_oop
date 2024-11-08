@@ -14,6 +14,6 @@ void Triangle::read(std::istream &input) {
     input >> a >> b >> c;
 }
 
-std::vector<Point> Triangle::getPoints() const {
+std::vector<Point> Triangle::get_points() const {
     return {a, b, c};
 }

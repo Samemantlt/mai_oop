@@ -18,7 +18,7 @@ public:
     Octagon& operator=(Octagon&& other) = default;
 
 protected:
-    [[nodiscard]] std::vector<Point> getPoints() const override;
+    [[nodiscard]] std::vector<Point> get_points() const override;
 private:
     std::array<Point, PointsCount> points;
 };

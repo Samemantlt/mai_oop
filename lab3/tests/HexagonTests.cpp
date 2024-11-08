@@ -11,7 +11,7 @@ TEST(HexagonTests, GetSizeValid) {
         Point(2, 1),
         Point(1, 1),
         Point(0, 1)
-    }).getSize(), 2);
+    }).get_size(), 2);
     EXPECT_DOUBLE_EQ((Hexagon{
         Point(0, 0),
         Point(1, 0),
@@ -19,7 +19,7 @@ TEST(HexagonTests, GetSizeValid) {
         Point(2, 1),
         Point(1, 2),
         Point(0, 1)
-    }).getSize(), 3);
+    }).get_size(), 3);
 }
 
 TEST(HexagonTests, GetCenterValid) {
@@ -30,7 +30,7 @@ TEST(HexagonTests, GetCenterValid) {
         Point(2, 1),
         Point(1, 1),
         Point(0, 1)
-    }).getCenter(), Point(1, 0.5));
+    }).get_center(), Point(1, 0.5));
     EXPECT_EQ((Hexagon{
         Point(0, 0),
         Point(1, -1),
@@ -38,7 +38,7 @@ TEST(HexagonTests, GetCenterValid) {
         Point(2, 1),
         Point(1, 3),
         Point(0, 1)
-    }).getCenter(), Point(1, 2.0/3));
+    }).get_center(), Point(1, 2.0/3));
 }
 
 TEST(HexagonTests, PrintValid) {

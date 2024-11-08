@@ -7,7 +7,7 @@
 
 #include <memory>
 
-std::unique_ptr<Figure> readFigureFromConsole();
+std::unique_ptr<Figure> read_figure_from_console();
 
 int main() {
     std::vector<std::unique_ptr<Figure>> figures;
@@ -35,7 +35,7 @@ int main() {
                 break;
             }
             case 'a': {
-                auto newFigure = readFigureFromConsole();
+                auto newFigure = read_figure_from_console();
                 if (newFigure == nullptr) {
                     std::cout << "Not added!" << std::endl;
                     break;
@@ -66,14 +66,14 @@ int main() {
                     break;
                 }
 
-                auto size = figures[index]->getSize();
+                auto size = figures[index]->get_size();
                 std::cout << "Size: " << size << std::endl;
                 break;
             }
             case 'S': {
                 double result = 0;
                 for (const auto& figure : figures)
-                    result += figure->getSize();
+                    result += figure->get_size();
 
                 std::cout << "Size: " << result << std::endl;
                 break;
@@ -87,7 +87,7 @@ int main() {
                     break;
                 }
 
-                auto center = figures[index]->getCenter();
+                auto center = figures[index]->get_center();
                 std::cout << "Center: " << center << std::endl;
                 break;
             }
@@ -98,7 +98,7 @@ int main() {
     }
 }
 
-std::unique_ptr<Figure> readFigureFromConsole() {
+std::unique_ptr<Figure> read_figure_from_console() {
     while (true) {
         std::cout << "Enter type of figure (t - triangle, h - hexagon, o - octagon): ";
 
