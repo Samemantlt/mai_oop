@@ -9,7 +9,7 @@ class Octagon : public Figure<T> {
 public:
     static constexpr int PointsCount = 8;
 
-    Octagon() = default;
+    Octagon();
     Octagon(const std::initializer_list<Point<T>>& points);
 
     void print(std::ostream& output) const override;
@@ -21,40 +21,54 @@ public:
 protected:
     [[nodiscard]] std::vector<Point<T>> getPoints() const override;
 private:
-    std::array<Point<T>, PointsCount> points;
+    std::array<std::unique_ptr<Point<T>>, PointsCount> points;
 };
 
 
 // Implementation
 
 template<Scalar T>
+Octagon<T>::Octagon() {
+    for (size_t i = 0; i < points.size(); i++) {
+        points[i] = std::make_unique<Point<T>>();
+    }
+}
+
+template<Scalar T>
 Octagon<T>::Octagon(const std::initializer_list<Point<T>> &points) {
     if (points.size() != PointsCount)
         throw std::runtime_error("Passed points list has invalid length");
 
-    std::copy(points.begin(), points.end(), this->points.begin());
+    size_t i = 0;
+    for (auto point : points) {
+        this->points[i++] = std::make_unique<Point<T>>(point);
+    }
 }
 
 template<Scalar T>
 void Octagon<T>::print(std::ostream &output) const {
-    output << "Octagon {A = " << points[0]
-        << "; B = " << points[1]
-        << "; C = " << points[2]
-        << "; D = " << points[3]
-        << "; E = " << points[4]
-        << "; F = " << points[5]
-        << "; G = " << points[6]
-        << "; H = " << points[7]
+    output << "Octagon {A = " << *points[0]
+        << "; B = " << *points[1]
+        << "; C = " << *points[2]
+        << "; D = " << *points[3]
+        << "; E = " << *points[4]
+        << "; F = " << *points[5]
+        << "; G = " << *points[6]
+        << "; H = " << *points[7]
         << "}";
 }
 
 template<Scalar T>
 void Octagon<T>::read(std::istream &input) {
     for (auto & point : points)
-        input >> point;
+        input >> *point;
 }
 
 template<Scalar T>
 std::vector<Point<T>> Octagon<T>::getPoints() const {
-    return {points.begin(), points.end()};
+    std::vector<Point<T>> output;
+    for (const auto& point : points) {
+        output.push_back(*point);
+    }
+    return output;
 }
