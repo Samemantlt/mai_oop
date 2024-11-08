@@ -12,7 +12,7 @@
 #define ScalarType double
 
 template<Scalar T>
-std::shared_ptr<Figure<T>> readFigureFromConsole();
+std::shared_ptr<Figure<T>> read_figure_from_console();
 
 int main() {
     Array<std::shared_ptr<Figure<ScalarType>>> figures;
@@ -34,18 +34,18 @@ int main() {
             case 'p': {
                 std::cout << "All figures : {" << std::endl;
                 for (const auto& f : figures) {
-                    std::cout << "\t" << *f << ": { center() = " << f->getCenter() << ", size() = " << f->getSize() << " }," << std::endl;
+                    std::cout << "\t" << *f << ": { center() = " << f->get_center() << ", size() = " << f->get_size() << " }," << std::endl;
                 }
                 std::cout << "}" << std::endl;
                 break;
             }
             case 'a': {
-                auto newFigure = readFigureFromConsole<ScalarType>();
-                if (newFigure == nullptr) {
+                auto new_figure = read_figure_from_console<ScalarType>();
+                if (new_figure == nullptr) {
                     std::cout << "Not added!" << std::endl;
                     break;
                 }
-                figures.push_back(std::move(newFigure));
+                figures.push_back(std::move(new_figure));
                 std::cout << "Added!" << std::endl;
                 break;
             }
@@ -71,14 +71,14 @@ int main() {
                     break;
                 }
 
-                ScalarType size = figures[index]->getSize();
+                ScalarType size = figures[index]->get_size();
                 std::cout << "Size: " << size << std::endl;
                 break;
             }
             case 'S': {
                 ScalarType result = 0;
                 for (const auto& figure : figures)
-                    result += figure->getSize();
+                    result += figure->get_size();
 
                 std::cout << "Size: " << result << std::endl;
                 break;
@@ -92,7 +92,7 @@ int main() {
                     break;
                 }
 
-                auto center = figures[index]->getCenter();
+                auto center = figures[index]->get_center();
                 std::cout << "Center: " << center << std::endl;
                 break;
             }
@@ -104,7 +104,7 @@ int main() {
 }
 
 template<Scalar T>
-std::shared_ptr<Figure<T>> readFigureFromConsole() {
+std::shared_ptr<Figure<T>> read_figure_from_console() {
     while (true) {
         std::cout << "Enter type of figure (t - triangle, h - hexagon, o - octagon): ";
 

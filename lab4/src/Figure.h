@@ -10,8 +10,8 @@ class Figure {
 public:
     virtual ~Figure() = default;
 
-    [[nodiscard]] virtual T getSize() const;
-    [[nodiscard]] virtual Point<T> getCenter() const;
+    [[nodiscard]] virtual T get_size() const;
+    [[nodiscard]] virtual Point<T> get_center() const;
 
     virtual void print(std::ostream& output) const = 0;
     virtual void read(std::istream& input) = 0;
@@ -29,7 +29,7 @@ public:
 protected:
     Figure() = default;
 
-    [[nodiscard]] virtual std::vector<Point<T>> getPoints() const = 0;
+    [[nodiscard]] virtual std::vector<Point<T>> get_points() const = 0;
 };
 
 // Include implementation explicitly because header file contains templates

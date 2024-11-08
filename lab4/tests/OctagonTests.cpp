@@ -13,7 +13,7 @@ TEST(OctagonTests, GetSizeValid) {
         Point(2, 1),
         Point(1, 1),
         Point(0, 1)
-    }).getSize(), 3);
+    }).get_size(), 3);
     EXPECT_DOUBLE_EQ((Octagon{
         Point(0, 0),
         Point(1, 0),
@@ -23,7 +23,7 @@ TEST(OctagonTests, GetSizeValid) {
         Point(2, 1),
         Point(1, 2),
         Point(0, 1)
-    }).getSize(), 4);
+    }).get_size(), 4);
 }
 
 TEST(OctagonTests, GetCenterValid) {
@@ -36,7 +36,7 @@ TEST(OctagonTests, GetCenterValid) {
         Point<double>(2, 1),
         Point<double>(1, 1),
         Point<double>(0, 1)
-    }).getCenter(), Point(1.5, 0.5));
+    }).get_center(), Point(1.5, 0.5));
     EXPECT_EQ((Octagon{
         Point<double>(0, 0),
         Point<double>(1, -2),
@@ -46,7 +46,7 @@ TEST(OctagonTests, GetCenterValid) {
         Point<double>(2, 2),
         Point<double>(1, 2),
         Point<double>(0, 1)
-    }).getCenter(), Point(1.5, 1.0/8));
+    }).get_center(), Point(1.5, 1.0/8));
 }
 
 TEST(OctagonTests, PrintValid) {

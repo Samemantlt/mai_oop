@@ -38,7 +38,7 @@ void Hexagon<T>::read(std::istream &input) {
 }
 
 template<Scalar T>
-std::vector<Point<T>> Hexagon<T>::getPoints() const {
+std::vector<Point<T>> Hexagon<T>::get_points() const {
     std::vector<Point<T>> output;
     for (const auto& point : points) {
         output.push_back(*point);

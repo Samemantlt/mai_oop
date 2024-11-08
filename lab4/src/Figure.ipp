@@ -15,8 +15,8 @@ std::istream &operator>>(std::istream &input, Figure<U> &figure) {
 }
 
 template<Scalar T>
-T Figure<T>::getSize() const {
-    std::vector<Point<T>> points = getPoints();
+T Figure<T>::get_size() const {
+    std::vector<Point<T>> points = get_points();
 
     if (points.size() < 3) {
         return 0.0; // Return 0 if the polygon has less than 3 points
@@ -26,31 +26,31 @@ T Figure<T>::getSize() const {
     for (size_t i = 0; i < points.size(); ++i) {
         const Point<T> &p1 = points[i];
         const Point<T> &p2 = points[(i + 1) % points.size()];
-        area += (p1.getX() * p2.getY()) - (p2.getX() * p1.getY());
+        area += (p1.get_x() * p2.get_y()) - (p2.get_x() * p1.get_y());
     }
 
     return 0.5 * (area >= 0 ? area : -area);
 }
 
 template<Scalar T>
-Point<T> Figure<T>::getCenter() const {
+Point<T> Figure<T>::get_center() const {
     Point<T> result;
     int count = 0;
 
-    for (auto point : getPoints()) {
+    for (auto point : get_points()) {
         count++;
         result += point;
     }
 
-    return Point<T>(result.getX() / count, result.getY() / count);
+    return Point<T>(result.get_x() / count, result.get_y() / count);
 }
 
 template<Scalar T>
 Figure<T>::operator T() const {
-    return getSize();
+    return get_size();
 }
 
 template<Scalar T>
 bool Figure<T>::operator==(const Figure<T> &other) const {
-    return getPoints() == other.getPoints();
+    return get_points() == other.get_points();
 }

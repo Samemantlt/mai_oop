@@ -27,6 +27,6 @@ void Triangle<T>::read(std::istream &input) {
 }
 
 template<Scalar T>
-std::vector<Point<T>> Triangle<T>::getPoints() const {
+std::vector<Point<T>> Triangle<T>::get_points() const {
     return {*a, *b, *c};
 }

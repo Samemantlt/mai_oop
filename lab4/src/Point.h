@@ -12,11 +12,11 @@ public:
 
     explicit Point(T x, T y);
 
-    [[nodiscard]] T getX() const;
-    void setX(T value);
+    [[nodiscard]] T get_x() const;
+    void set_x(T value);
 
-    [[nodiscard]] T getY() const;
-    void setY(T value);
+    [[nodiscard]] T get_y() const;
+    void set_y(T value);
 
     [[nodiscard]] T length() const;
 

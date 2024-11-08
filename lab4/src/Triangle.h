@@ -17,7 +17,7 @@ public:
     Triangle& operator=(Triangle&& other) = default;
 
 protected:
-    [[nodiscard]] std::vector<Point<T>> getPoints() const override;
+    [[nodiscard]] std::vector<Point<T>> get_points() const override;
 private:
     std::unique_ptr<Point<T>> a, b, c;
 };

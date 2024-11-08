@@ -40,7 +40,7 @@ void Octagon<T>::read(std::istream &input) {
 }
 
 template<Scalar T>
-std::vector<Point<T>> Octagon<T>::getPoints() const {
+std::vector<Point<T>> Octagon<T>::get_points() const {
     std::vector<Point<T>> output;
     for (const auto& point : points) {
         output.push_back(*point);

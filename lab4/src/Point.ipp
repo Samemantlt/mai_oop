@@ -17,16 +17,16 @@ Point<T>::Point(T x, T y) {
 }
 
 template<Scalar T>
-T Point<T>::getX() const { return x; }
+T Point<T>::get_x() const { return x; }
 
 template<Scalar T>
-void Point<T>::setX(T value) { x = value; }
+void Point<T>::set_x(T value) { x = value; }
 
 template<Scalar T>
-T Point<T>::getY() const { return y; }
+T Point<T>::get_y() const { return y; }
 
 template<Scalar T>
-void Point<T>::setY(T value) { y = value; }
+void Point<T>::set_y(T value) { y = value; }
 
 template<Scalar T>
 T Point<T>::length() const {
@@ -35,7 +35,7 @@ T Point<T>::length() const {
 
 template<Scalar U>
 std::ostream &operator<<(std::ostream &output, const Point<U> &point) {
-    output << "(" << point.getX() << "; " << point.getY() << ")";
+    output << "(" << point.get_x() << "; " << point.get_y() << ")";
     return output;
 }
 
@@ -43,8 +43,8 @@ template<Scalar U>
 std::istream &operator>>(std::istream &input, Point<U> &point) {
     U x, y;
     input >> x >> y;
-    point.setX(x);
-    point.setY(y);
+    point.set_x(x);
+    point.set_y(y);
     return input;
 }
 
