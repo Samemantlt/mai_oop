@@ -8,12 +8,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 file(
     GLOB_RECURSE SOURCES
     src/*.h
+    src/*.ipp
     src/*.cpp
 )
 
 file(
     GLOB_RECURSE TESTS
     tests/*.h
+    src/*.ipp
     tests/*.cpp
 )
 

@@ -7,17 +7,19 @@
 
 #include <memory>
 
+#include "Array.h"
+
 #define ScalarType double
 
 template<Scalar T>
-std::unique_ptr<Figure<T>> readFigureFromConsole();
+std::shared_ptr<Figure<T>> readFigureFromConsole();
 
 int main() {
-    std::vector<std::unique_ptr<Figure<ScalarType>>> figures;
+    Array<std::shared_ptr<Figure<ScalarType>>> figures;
 
     while (true) {
         std::cout << "Commands:" << std::endl
-            << "p - Print all figures" << std::endl
+            << "p - Print all figures (coordinates, center, size)" << std::endl
             << "a - Add new figure" << std::endl
             << "r - Remove figure" << std::endl
             << "s - Calculate size of a figure" << std::endl
@@ -32,7 +34,7 @@ int main() {
             case 'p': {
                 std::cout << "All figures : {" << std::endl;
                 for (const auto& f : figures) {
-                    std::cout << "\t" << *f << "," << std::endl;
+                    std::cout << "\t" << *f << ": { center() = " << f->getCenter() << ", size() = " << f->getSize() << " }," << std::endl;
                 }
                 std::cout << "}" << std::endl;
                 break;
@@ -56,7 +58,7 @@ int main() {
                     break;
                 }
 
-                figures.erase(std::next(figures.begin(), index));
+                figures.remove_at(index);
                 std::cout << "Removed" << std::endl;
                 break;
             }
@@ -102,7 +104,7 @@ int main() {
 }
 
 template<Scalar T>
-std::unique_ptr<Figure<T>> readFigureFromConsole() {
+std::shared_ptr<Figure<T>> readFigureFromConsole() {
     while (true) {
         std::cout << "Enter type of figure (t - triangle, h - hexagon, o - octagon): ";
 
@@ -112,19 +114,19 @@ std::unique_ptr<Figure<T>> readFigureFromConsole() {
 
         switch (type) {
             case 't': {
-                std::unique_ptr<Figure<T>> figure = std::make_unique<Triangle<T>>();
+                std::shared_ptr<Figure<T>> figure = std::make_shared<Triangle<T>>();
                 std::cout << "Enter Triangle points' coordinates (eg. 0 0 1 0 0 1): ";
                 std::cin >> *figure;
                 return figure;
             }
             case 'h': {
-                std::unique_ptr<Figure<T>> figure = std::make_unique<Hexagon<T>>();
+                std::shared_ptr<Figure<T>> figure = std::make_shared<Hexagon<T>>();
                 std::cout << "Enter Hexagon points' coordinates (eg. 0 0 1 -1 2 0 2 1 1 2 0 1): ";
                 std::cin >> *figure;
                 return figure;
             }
             case 'o': {
-                std::unique_ptr<Figure<T>> figure = std::make_unique<Octagon<T>>();
+                std::shared_ptr<Figure<T>> figure = std::make_shared<Octagon<T>>();
                 std::cout << "Enter Hexagon points' coordinates (eg. 0 0 1 -1 2 -1 3 0 3 1 2 2 1 2 0 1): ";
                 std::cin >> *figure;
                 return figure;
