@@ -1,0 +1,3 @@
+2
+Squirrel Squirrel_1 1 1
+SlaveTrader SlaveTrader_1 1 2
