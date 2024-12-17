@@ -19,7 +19,7 @@ Four::Four() {
 }
 
 Four::Four(const size_t &n, const u_int8_t t) {
-    if (t < '0' || t > '9')
+    if (t < '0' || t > '3')
         throw std::runtime_error("t is invalid");
 
     size = n;
@@ -29,7 +29,7 @@ Four::Four(const size_t &n, const u_int8_t t) {
 
 Four::Four(const std::initializer_list<u_int8_t> &t) {
     for (const auto i : t) {
-        if (i < '0' || i > '9')
+        if (i < '0' || i > '3')
             throw std::runtime_error("Passed list contains invalid characters");
     }
 
